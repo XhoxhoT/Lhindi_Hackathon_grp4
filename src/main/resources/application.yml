@@ -1,0 +1,31 @@
+# Spring Boot configuration
+spring:
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://flora.db.elephantsql.com:5432/ftspuijp
+    username: ftspuijp
+    password: UqZ4Zfl4z4J8HoOUh27bmbPVRXXNKyZV
+  # JPA properties
+  jpa:
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+# Server configuration
+server:
+  port: 8080
+# Security configuration
+security:
+  user:
+    name: user
+password: user
+
+#logging properties
+logging:
+  level:
+    root: INFO
+    com.hendisantika.springbootrestapipostgresql.controller: DEBUG
+  file:
+    name: C:\Log\lab.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
