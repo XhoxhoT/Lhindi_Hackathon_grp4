@@ -79,9 +79,17 @@ public class PersonController {
         return personRepository.findByExperience(experience);
     }
 
+    // Assign project to person
     @PostMapping("/{personId}/projects/{projectId}")
     public Person assignProjectToPerson(@PathVariable int personId, @PathVariable int projectId) {
         return personService.assignProjectToPerson(personId, projectId);
+    }
+
+    // remove a project from a person
+    @DeleteMapping("/{personId}/projects/{projectId}")
+    public ResponseEntity<Person> removeProjectFromPerson(@PathVariable int personId, @PathVariable int projectId) {
+        Person person = personService.removeProjectFromPerson(personId, projectId);
+        return ResponseEntity.ok(person);
     }
 
 
