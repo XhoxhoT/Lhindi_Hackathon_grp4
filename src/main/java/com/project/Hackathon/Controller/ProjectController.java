@@ -14,13 +14,17 @@ import java.util.Optional;
 @RequestMapping("/api/projects")
 public class ProjectController {
 
+    // dependency injection
     @Autowired
     private ProjectService projectService;
 
+    // Get all project
     @GetMapping
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
     }
+
+    // Retrieve Project by id
 
     @GetMapping("/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable int id) {
@@ -29,11 +33,13 @@ public class ProjectController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Creating new Project
     @PostMapping
     public Project createProject(@RequestBody Project project) {
         return projectService.createProject(project);
     }
 
+    // Update an existing project
     @PutMapping("/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable int id, @RequestBody Project projectDetails) {
         return projectService.getProjectById(id)
@@ -44,6 +50,7 @@ public class ProjectController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Delete a project based on his id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteProject(@PathVariable int id) {
 
