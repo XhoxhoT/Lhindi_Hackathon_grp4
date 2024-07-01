@@ -1,6 +1,7 @@
 package com.project.Hackathon.Controller;
 
 import com.project.Hackathon.Repository.PersonRepository;
+import com.project.Hackathon.Services.PersonService;
 import com.project.Hackathon.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private PersonService personService;
 
     @PostMapping
     public Person createPerson(@RequestBody Person person) {
@@ -73,6 +77,11 @@ public class PersonController {
     @GetMapping("/findByExperience")
     public List<Person> getPersonByExperience(@RequestParam(value = "experience") String experience) {
         return personRepository.findByExperience(experience);
+    }
+
+    @PostMapping("/{personId}/projects/{projectId}")
+    public Person assignProjectToPerson(@PathVariable int personId, @PathVariable int projectId) {
+        return personService.assignProjectToPerson(personId, projectId);
     }
 
 
